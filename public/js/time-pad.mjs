@@ -92,40 +92,33 @@ class timePad extends stylesSuper {
 	}
 
 	sortTimeEntries() {
-		let tempDates = [];
-		let tempStarts = this.data.timeEntries.filter((e,i) => {
+		let uniqueDates = [];
+		let pairedEntries = [];
+		this.data.timeEntries.forEach((e,i) => {
 			if (++i%2!=0) {
-				if (!tempDates.includes(e.toDate().toLocaleDateString())) {
-					tempDates.push(e.toDate().toLocaleDateString())
+				if (!uniqueDates.includes(e.toDate().toLocaleDateString())) {
+					uniqueDates.push(e.toDate().toLocaleDateString())
 				}
-				return true;
+				pairedEntries.push({start: e.toDate(),end: null});
+			} else {
+				pairedEntries[pairedEntries.length-1].end = e.toDate();
 			}
 		})
-		let tempEnds = this.data.timeEntries.filter((e,i)=> {
-			if (++i%2==0) return true;
-		})
-		let pairs = []
-		tempStarts.forEach((e,i) => {
-			let t = tempEnds[i]?tempEnds[i].toDate():null;
-			let d = t?t-e.toDate():0;
-			pairs.push({
-				start: e.toDate(),
-				end: t,
-				duration: d
-			})
-		})
-		this.entriesByDate = tempDates.map(d => {
+		this.entriesByDate = uniqueDates.map(d => {
 			return {
 				dt: d,
-				entries: pairs.filter((p) => {
+				entries: pairedEntries.filter(p => {
 					if (p.start.toLocaleDateString()==d) return true;
 				}),
 				minutes: () => {
-					let tmp = 0;
-					pairs.forEach(p => {
-						if (p.start.toLocaleDateString()==d) tmp += p.duration;
+					let duration = 0;
+					pairedEntries.forEach(p => {
+						if (p.start.toLocaleDateString()==d) {
+							let e = p.end?p.end:p.start;
+							duration += (e - p.start)
+						};
 					})
-					return Math.ceil(tmp/60000);
+					return Math.ceil(duration/60000);
 				}
 			}
 		}).reverse()
@@ -286,7 +279,7 @@ class timePad extends stylesSuper {
 								${d.entries.map(entry => {
 									return html`
 										<li class="row">
-											<div class="quarter">${Math.ceil(entry.duration/6000)/10} min</div>
+											<div class="quarter">${entry.end?Math.ceil((entry.end-entry.start)/6000)/10+' min':html`<span class="icon spin">rotate_right</span>`}</div>
 											<div class="third">${entry.start.toLocaleString()}</div>
 											<div class="rest mobile">${entry.end?entry.end.toLocaleString():null}</div>
 										</li>
