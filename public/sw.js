@@ -66,6 +66,30 @@ self.__precacheManifest = [
     "revision": "a928bb3e839e764dc32189b48df50f56"
   },
   {
+    "url": "index.html",
+    "revision": "27ab001a891c467f0e870a17b5811fd6"
+  },
+  {
+    "url": "js/app-banner.mjs",
+    "revision": "97d52d4aa91221000fb5609e82650bf5"
+  },
+  {
+    "url": "js/app-main.mjs",
+    "revision": "18dd257236aaf68d0ffb6da3200ae1e3"
+  },
+  {
+    "url": "js/my-timepad.mjs",
+    "revision": "1e5f2515f5e37921e7c8513e5355aab8"
+  },
+  {
+    "url": "js/styles-super.mjs",
+    "revision": "bb25375aecb3e9a8e1f6085e1c83510b"
+  },
+  {
+    "url": "js/time-pad.mjs",
+    "revision": "eaff77eca4f2393022d140bb96d8af98"
+  },
+  {
     "url": "manifest.json",
     "revision": "f09143ba4a2ad8241742df2fd9082800"
   }
