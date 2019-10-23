@@ -1,0 +1,42 @@
+{
+    "short_name": "MyTimepad",
+    "name": "MyTimepad",
+    "description": "Web app for tracking time and taking notes",
+    "icons": [
+        {
+            "src": "./img/icon-32.png",
+            "type": "img/png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "./img/icon-48.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "./img/icon-72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "./img/icon-128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "./img/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./img/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#E4F0EC",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#5C7A70"
+}

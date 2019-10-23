@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="Description" content="Mytimepad is a web app for tracking time and keeping notes.">
+	<meta name="theme-color" content="#5C7A70"/>
+	<title>MyTimepad</title>
+	<link rel="icon" sizes="192x192" href="./img/icon-192.png">
+	<link rel="apple-touch-icon" href="./img/icon-192.png">
+	<link rel="manifest" href="/manifest.json" />
+	<script defer src="/__/firebase/6.6.1/firebase-app.js"></script>
+	<script defer src="/__/firebase/6.6.1/firebase-auth.js"></script>
+	<script defer src="/__/firebase/6.6.1/firebase-firestore.js"></script>
+	<script defer src="/__/firebase/init.js"></script>
+	<script src="./js/app-main.mjs" type="module"></script>
+	<style type="text/css">
+		:root{--c1:#E4F0EC;--c2:#5C7A70;--c3:#813F6C;--c4:#B89E5C;--c5:#281622;}
+		@import url('https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap');
+		@font-face {font-family:'Material Icons';font-style:normal;font-weight:400;src:local('Material Icons'),local('MaterialIcons-Regular'),url(/fonts/MaterialIcons-Regular.woff2) format('woff2'),url(/fonts/MaterialIcons-Regular.woff) format('woff'),url(/fonts/MaterialIcons-Regular.ttf) format('truetype');}
+		html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
+		html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+		html,body{font-family:'Lato',sans-serif;font-size:15px;line-height:1.5}html{overflow-x:hidden}body{background-color:var(--c1);margin:0}
+		h1,h2,h3,h4,h5,h6{font-family:'Roboto',sans-serif;}
+	</style>
+</head>
+
+<body style="margin-bottom:32px;margin-top:58px">
+	<noscript style="text-align:center"><h2>Javascript is required!</h2><p>Please enable Javascript and refresh the page.</p></noscript>
+	<app-main></app-main>
+	<script type="text/javascript">
+		const App = {
+			installPrompt:null,
+			log:[],
+			logMaxSize: 100,
+			state: {},
+			logPost: (msg) => {
+				let dt = new Date();
+				let logLength = App.log.push(`[${dt.toLocaleString()}] ${msg}`);
+				if (logLength>App.logMaxSize) {
+					App.log.shift();
+				}
+			},
+			loadModule: filename => {
+				let scripts = document.getElementsByTagName('script');
+				let alreadyLoaded=false;
+				for (let i in scripts) {
+					if (scripts[i].type=='module'&&scripts[i].src.search(`${filename}.mjs`)>=0) { alreadyLoaded = true; }
+				}
+				if (!alreadyLoaded) {
+					let el = document.createElement('script');
+					el.type = `module`;
+					el.src = `/scripts/${filename}.mjs`;
+					document.head.appendChild(el);
+				}
+			},
+			uuid: () => {
+  				return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    			(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+			}
+		};
+		window.addEventListener('beforeinstallprompt', (e) => {
+			App.installPrompt = e;
+			App.main.showInstallBtn = true;
+		});
+		window.addEventListener('load', () => {
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/sw.js').then(registration => {
+					App.logPost(`[SERVICE WORKER] Registered successfully with scope: ${registration.scope}`);
+				}, err => {
+					App.logPost(`[SERVICE WORKER] ERROR >> Registration failed`)
+				});
+			}
+			if (window.matchMedia('(display-mode: standalone)').matches) {
+				firebase.firestore().enablePersistence();
+				App.logPost(`[FIREBASE] Offline persistence enabled`);
+			}
+		});
+	</script>
+</body>
+
+</html>
