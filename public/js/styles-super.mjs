@@ -3,11 +3,6 @@ import { LitElement, css } from 'https://cdn.pika.dev/-/lit-element/2.2.1/dist-e
 
 export class stylesSuper extends LitElement {
 	static get styles() {
-		const c1 = css`#E4F0EC`;
-		const c2 = css`#5C7A70`;
-		const c3 = css`#813F6C`;
-		const c4 = css`#B89E5C`;
-		const c5 = css`#281622`;
 		return [css`
 		html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 		h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
@@ -154,36 +149,36 @@ export class stylesSuper extends LitElement {
 		.hover-none:hover{box-shadow:none!important}
 		`,css`
 		.bold{font-weight:bold}.link{cursor:pointer}
-		.c1 {background-color:${c1} !important; color:${c5} !important;}
-		.c2 {background-color:${c2} !important; color:#000 !important;}
-		.c3 {background-color:${c3} !important; color:#000 !important;}
-		.c4 {background-color:${c4} !important; color:#000 !important;}
-		.c5 {background-color:${c5} !important; color:${c1} !important;}
-		.txt-c1 {color:${c1} !important;}
-		.txt-c2 {color:${c2} !important;}
-		.txt-c3 {color:${c3} !important;}
-		.txt-c4 {color:${c4} !important;}
-		.txt-c5 {color:${c5} !important;}
-		.border-c1 {border-color:${c1} !important;}
-		.border-c2 {border-color:${c2} !important;}
-		.border-c3 {border-color:${c3} !important;}
-		.border-c4 {border-color:${c4} !important;}
-		.border-c5 {border-color:${c5} !important;}
-		.hover-c1:hover {background-color:${c1} !important; color:${c5} !important;}
-		.hover-c2:hover {background-color:${c2} !important; color:#000 !important;}
-		.hover-c3:hover {background-color:${c3} !important; color:#000 !important;}
-		.hover-c4:hover {background-color:${c4} !important; color:#000 !important;}
-		.hover-c5:hover {background-color:${c5} !important; color:${c1} !important;}
-		.hover-txt-c1:hover {color:${c1} !important;}
-		.hover-txt-c2:hover {color:${c2} !important;}
-		.hover-txt-c3:hover {color:${c3} !important;}
-		.hover-txt-c4:hover {color:${c4} !important;}
-		.hover-txt-c5:hover {color:${c5} !important;}
-		.hover-border-c1:hover {border-color:${c1} !important;}
-		.hover-border-c2:hover {border-color:${c2} !important;}
-		.hover-border-c3:hover {border-color:${c3} !important;}
-		.hover-border-c4:hover {border-color:${c4} !important;}
-		.hover-border-c5:hover {border-color:${c5} !important;}
+		.c1 {background-color:var(--c1) !important; color:var(--c5) !important;}
+		.c2 {background-color:var(--c2) !important; color:#000 !important;}
+		.c3 {background-color:var(--c3) !important; color:#000 !important;}
+		.c4 {background-color:var(--c4) !important; color:#000 !important;}
+		.c5 {background-color:var(--c5) !important; color:var(--c1) !important;}
+		.txt-c1 {color:var(--c1) !important;}
+		.txt-c2 {color:var(--c2) !important;}
+		.txt-c3 {color:var(--c3) !important;}
+		.txt-c4 {color:var(--c4) !important;}
+		.txt-c5 {color:var(--c5) !important;}
+		.border-c1 {border-color:var(--c1) !important;}
+		.border-c2 {border-color:var(--c2) !important;}
+		.border-c3 {border-color:var(--c3) !important;}
+		.border-c4 {border-color:var(--c4) !important;}
+		.border-c5 {border-color:var(--c5) !important;}
+		.hover-c1:hover {background-color:var(--c1) !important; color:var(--c5) !important;}
+		.hover-c2:hover {background-color:var(--c2) !important; color:#000 !important;}
+		.hover-c3:hover {background-color:var(--c3) !important; color:#000 !important;}
+		.hover-c4:hover {background-color:var(--c4) !important; color:#000 !important;}
+		.hover-c5:hover {background-color:var(--c5) !important; color:var(--c1) !important;}
+		.hover-txt-c1:hover {color:var(--c1) !important;}
+		.hover-txt-c2:hover {color:var(--c2) !important;}
+		.hover-txt-c3:hover {color:var(--c3) !important;}
+		.hover-txt-c4:hover {color:var(--c4) !important;}
+		.hover-txt-c5:hover {color:var(--c5) !important;}
+		.hover-border-c1:hover {border-color:var(--c1) !important;}
+		.hover-border-c2:hover {border-color:var(--c2) !important;}
+		.hover-border-c3:hover {border-color:var(--c3) !important;}
+		.hover-border-c4:hover {border-color:var(--c4) !important;}
+		.hover-border-c5:hover {border-color:var(--c5) !important;}
 		`,css`
 		.icon {
 			font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:15px;display:inline-block;line-height:1.5;text-transform:none;letter-spacing:normal;word-wrap:normal;white-space:nowrap;direction:ltr;
